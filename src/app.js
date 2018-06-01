@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
-import Tienda from './tienda/Tienda';
+import {createStore, applyMiddleware} from 'redux';
+import ReduxPromise from 'redux-promise';
 import 'normalize.css/normalize.css';
-import './estilos/styles.scss';
 
-const tienda = Tienda();
+import Pronostico from './componentes/Pronostico';
+import reducers from './reducers';
+const tienda = applyMiddleware(ReduxPromise)(createStore);
 
 const jsx = (
     <Provider 
-    store={tienda} 
+    store={tienda(reducers)} 
     >
-        <AppRouter />
+        <Pronostico/>
     </Provider>
 );
 
-ReactDOM.render(<AppRouter/>, document.getElementById('app'));
+ReactDOM.render(jsx, document.getElementById('app'));
 
