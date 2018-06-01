@@ -1,2 +1,2 @@
-## Una Plantilla 
-# plantilla react-redux.
+## Forecast
+# API para el pronóstico del clima.
